@@ -12,6 +12,7 @@ import { PatientSearchContainerComponent } from './patient-search-container.comp
 import { PatientSearchService } from './patient-search.service';
 import { AppFeatureAnalytics } from '../shared/app-analytics/app-feature-analytics.service';
 import { PatientRegistrationModule } from '../patient-creation/patient-creation.module';
+import {PatientQueueModule} from '../patient-queue/patient-queue-module';
 @NgModule({
     imports: [
         OpenmrsApi,
@@ -19,6 +20,7 @@ import { PatientRegistrationModule } from '../patient-creation/patient-creation.
         CommonModule,
         NgxPaginationModule,
         PatientRegistrationModule,
+        PatientQueueModule,
         RouterModule
     ],
     exports: [ PatientSearchComponent],

@@ -1,0 +1,43 @@
+<div *ngIf="hideAppointments" class="patient-queue">
+  <div class="container-fluid">
+    <div class="Polaris-Page-Header">
+      <div class="Polaris-Page-Header__TitleAndRollup">
+        <div class="Polaris-Page-Header__Title">
+          <div>
+            <h1 class="Polaris-DisplayText Polaris-DisplayText--sizeLarge">Patient Queue</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Polaris-Page__Content">
+      <div class="Polaris-Card">
+          <div class="Polaris-DataTable">
+            <div class="Polaris-DataTable__ScrollContainer">
+              <table class="Polaris-DataTable__Table">
+                <thead>
+                <tr>
+                  <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--fixed">#</th>
+                  <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Waiting Time</th>
+                  <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Time Registered</th>
+                  <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Identifiers</th>
+                  <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Patient Name</th>
+                  <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Program</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="Polaris-DataTable__TableRow" (click)='startAppointment(patient)' *ngFor="let patient of patientQueue; let i = index">
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--fixed">{{ (i + 1)+ (queuePage - 1) * 10 }}</td>
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.schedule_date}}</td>
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.rtc_date}}</td>
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.identifiers}}</td>
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.person_name}}</td>
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.encounter_type}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
