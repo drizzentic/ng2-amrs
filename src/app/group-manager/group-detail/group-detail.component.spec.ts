@@ -14,6 +14,7 @@ import 'rxjs/add/observable/of';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe, CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
+import {PatientQueueComponent} from '../../patient-queue/patient-queue.component';
 
 class MockActivatedRoute {
     public params = Observable.of([{ 'id': 1 }]);
@@ -43,7 +44,9 @@ describe('Group Detail Component Tests', () => {
             declarations: [GroupDetailComponent,
                 GroupDetailSummaryComponent,
                 GroupEditorComponent,
-                PatientSearchComponent],
+                PatientSearchComponent,
+                PatientQueueComponent
+            ],
             providers: [
                 DatePipe,
                 {

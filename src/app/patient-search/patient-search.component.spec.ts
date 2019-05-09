@@ -3,7 +3,7 @@ import { LocalStorageService } from './../utils/local-storage.service';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { PatientSearchComponent } from './patient-search.component';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { PatientSearchService } from './patient-search.service';
@@ -39,6 +39,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SpyLocation } from '@angular/common/testing';
 import { Location } from '@angular/common';
 import { PatientProgramResourceService } from '../etl-api/patient-program-resource.service';
+import {PatientQueueModule} from '../patient-queue/patient-queue-module';
+import {PatientQueueComponent} from '../patient-queue/patient-queue.component';
+import {DailyScheduleResourceService} from '../etl-api/daily-scheduled-resource.service';
 
 class MockRouter {
   navigate = jasmine.createSpy('navigate');
@@ -85,7 +88,7 @@ describe('Component: PatientSearch', () => {
         FormsModule,
         NgxPaginationModule,
         IonicStorageModule.forRoot(),
-        HttpClientTestingModule,
+        HttpClientTestingModule
       ],
       providers: [
         PatientSearchService,
@@ -126,7 +129,8 @@ describe('Component: PatientSearch', () => {
           provide: ActivatedRoute,
           useClass: MockActivatedRoute
         }
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();  // compile template and css
   }));

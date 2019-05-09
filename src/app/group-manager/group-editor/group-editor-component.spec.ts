@@ -15,6 +15,7 @@ import { GroupEditorComponent } from './group-editor-component';
 import { CacheService } from 'ionic-cache';
 import { CacheStorageService } from 'ionic-cache/dist/cache-storage';
 import { DepartmentProgramsConfigService } from 'src/app/etl-api/department-programs-config.service';
+import {PatientQueueComponent} from '../../patient-queue/patient-queue.component';
 
 class MockActivatedRoute {
     public params = Observable.of([{ 'id': 1 }]);
@@ -52,7 +53,9 @@ describe('Group Editor Component Tests', () => {
             ],
             declarations: [GroupEditorComponent,
                 GroupEditorComponent,
-                PatientSearchComponent],
+                PatientSearchComponent,
+                PatientQueueComponent
+            ],
             providers: [
                 DatePipe,
                 CacheService,

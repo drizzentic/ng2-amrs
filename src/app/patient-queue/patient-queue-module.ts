@@ -1,9 +1,10 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {routes} from '../clinic-dashboard/clinic-dashboard.routes';
 import {PatientQueueComponent} from './patient-queue.component';
 import {ClinicDashboardCacheService} from '../clinic-dashboard/services/clinic-dashboard-cache.service';
 import {CommonModule} from '@angular/common';
 import {UserDefaultPropertiesService} from '../user-default-properties';
+import {DailyScheduleResourceService} from '../etl-api/daily-scheduled-resource.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {UserDefaultPropertiesService} from '../user-default-properties';
   ],
   providers: [
     ClinicDashboardCacheService,
-    UserDefaultPropertiesService
+    UserDefaultPropertiesService,
+    DailyScheduleResourceService
   ],
   exports: [
     PatientQueueComponent

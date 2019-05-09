@@ -8,6 +8,8 @@ import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {ClinicDashboardCacheService} from '../clinic-dashboard/services/clinic-dashboard-cache.service';
 import {UserDefaultPropertiesService} from '../user-default-properties';
+import {SelectDepartmentService} from '../shared/services/select-department.service';
+import {LocalStorageService} from '../utils/local-storage.service';
 
 @Component({
   selector: 'app-patient-queue',
@@ -20,28 +22,35 @@ export class PatientQueueComponent implements OnInit {
   public currentDate = Moment().format('MMM  D , YYYY ');
   public queuePage = 1;
   public routeSub: Subscription;
-  public errors: any[] = [];
+  public errors: any = [];
   public route: ActivatedRoute;
+  public title = 'Patient Queue';
   public params: any = {
     'programType': [],
     'visitType': [],
     'encounterType': []
   };
   public selectedLocation: any;
+  public currentDepartment: any;
   public nextStartIndex  = 0;
+  public selectedDepartment: any;
 
   constructor(
    private dailyScheduleResource: DailyScheduleResourceService,
    private clinicDashboardCacheService: ClinicDashboardCacheService,
    private userDefaultProperties: UserDefaultPropertiesService,
+   private selectDepartmentService: SelectDepartmentService,
+   private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit() {
-
-    this.selectedLocation = this.userDefaultProperties.getCurrentUserDefaultLocationObject();
-    this.currentDate = Moment(new Date()).format('YYYY-MM-DD');
-    this.getPatientQueue();
-
+    // Invoke fetching of patient queue if department is Oncology
+    if (this.getCurrentDepartment() === 'ONCOLOGY') {
+      // this.selectedDepartment = selectedDepartment;
+      this.selectedLocation = this.userDefaultProperties.getCurrentUserDefaultLocationObject();
+      this.currentDate = Moment(new Date()).format('YYYY-MM-DD');
+      this.getPatientQueue();
+    }
   }
 
   public startAppointment(patient) {
@@ -49,7 +58,7 @@ export class PatientQueueComponent implements OnInit {
 
   }
 
-  private getPatientQueue() {
+  public getPatientQueue() {
     const params = this.setQueryParams();
     const result = this.dailyScheduleResource.getDailyAppointments(params);
     if (result === null) {
@@ -67,12 +76,26 @@ export class PatientQueueComponent implements OnInit {
         (error) => {
           this.errors.push({
             id: 'Daily Schedule Appointments',
-            message: 'error fetching daily schedule patientQueue'
+            message: 'error fetching daily schedule patientQueue',
+            error: error
           });
         }
       );
     }
 
+  }
+  // Get current loaded department
+  public getCurrentDepartment() {
+    let department = this.localStorageService.getItem('userDefaultDepartment');
+    // Default department set to Oncology
+    if (department === '[""]') {
+      department = 'ONCOLOGY';
+    } else {
+      department = this.selectDepartmentService.getUserSetDepartment();
+    }
+    this.currentDepartment = department;
+
+    return this.currentDepartment;
   }
 
   // Set the default query parameters
