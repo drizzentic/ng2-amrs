@@ -7,6 +7,21 @@
             <h1 class="Polaris-DisplayText Polaris-DisplayText--sizeLarge">{{ title }}</h1>
           </div>
         </div>
+
+        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+            <div class="Polaris-Labelled__LabelWrapper">
+            </div>
+            <div class="Polaris-Select"><select id="queue_filter" class="Polaris-Select__Input" aria-invalid="false">
+                <option value="Scheduled">Scheduled</option>
+                <option value="Waiting">Waiting</option>
+                <option value="INConsultation">INConsultation</option>
+              </select>
+              <div class="Polaris-Select__Content" aria-hidden="true"><span class="Polaris-Select__SelectedOption">Today</span><span class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                      <path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z" fill-rule="evenodd"></path>
+                    </svg></span></span></div>
+              <div class="Polaris-Select__Backdrop"></div>
+            </div>
+          </div>
       </div>
     </div>
     <div class="Polaris-Page__Content">
@@ -19,6 +34,8 @@
                   <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--fixed">#</th>
                   <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Waiting Time</th>
                   <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Time Registered</th>
+                  <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Vitals Snapshot</th>
+                  <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">ECOG</th>
                   <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Identifiers</th>
                   <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Patient Name</th>
                   <th class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric">Program</th>
@@ -27,8 +44,10 @@
                 <tbody>
                 <tr class="Polaris-DataTable__TableRow" (click)='startAppointment(patient)' *ngFor="let patient of patientQueue; let i = index">
                   <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--fixed">{{ (i + 1)+ (queuePage - 1) * 10 }}</td>
-                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.schedule_date}}</td>
-                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.rtc_date}}</td>
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.waiting_time}}</td>
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.visit_start_time}}</td>
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.vitals_summary}}</td>
+                  <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.ecog}}</td>
                   <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.identifiers}}</td>
                   <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.person_name}}</td>
                   <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{patient.encounter_type}}</td>
