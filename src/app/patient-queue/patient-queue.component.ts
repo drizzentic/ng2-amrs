@@ -10,7 +10,8 @@ import {ClinicDashboardCacheService} from '../clinic-dashboard/services/clinic-d
 import {UserDefaultPropertiesService} from '../user-default-properties';
 import {SelectDepartmentService} from '../shared/services/select-department.service';
 import {LocalStorageService} from '../utils/local-storage.service';
-
+import { HttpParams } from '@angular/common/http';
+import { VisitResourceService } from '../openmrs-api/visit-resource.service';
 @Component({
   selector: 'app-patient-queue',
   templateUrl: './patient-queue.component.html',
@@ -18,6 +19,7 @@ import {LocalStorageService} from '../utils/local-storage.service';
 })
 export class PatientQueueComponent implements OnInit {
   public patientQueue: any[] = [];
+  public patientVisit: any[] = [];
   public hideAppointments = false;
   public currentDate = Moment().format('MMM  D , YYYY ');
   public queuePage = 1;
@@ -40,7 +42,8 @@ export class PatientQueueComponent implements OnInit {
    private clinicDashboardCacheService: ClinicDashboardCacheService,
    private userDefaultProperties: UserDefaultPropertiesService,
    private selectDepartmentService: SelectDepartmentService,
-   private localStorageService: LocalStorageService
+   private localStorageService: LocalStorageService,
+   private patientVisitService: VisitResourceService,
   ) { }
 
   ngOnInit() {
@@ -62,14 +65,18 @@ export class PatientQueueComponent implements OnInit {
     const params = this.setQueryParams();
     const result = this.dailyScheduleResource.getDailyAppointments(params);
     if (result === null) {
-
       throw new Error('Null daily patientQueues observable');
     } else {
       result.pipe(take(1)).subscribe(
         (patientList) => {
           if (patientList) {
-            this.patientQueue = patientList;
+            //this.patientQueue = patientList;
             this.hideAppointments = true;
+            this.patientQueue = patientList
+            //Get patient details and vitals
+            patientList.forEach(patient => {
+              this.getVisit(patient.patient_uuid)
+            });
           }
         }
         ,
@@ -83,6 +90,27 @@ export class PatientQueueComponent implements OnInit {
       );
     }
 
+  }
+
+  // Get Visit
+  public getVisit(patientUuid){
+    const params = new HttpParams().set('patient', patientUuid);
+    console.log(params, patientUuid)
+    const patientVisit = this.patientVisitService.getPatientVisits({ patientUuid: patientUuid, startDatetime: this.currentDate });
+
+    patientVisit.subscribe((data) => {
+      console.log("aye", data);
+    })
+
+    
+
+
+  }
+
+
+  // Get Encouters
+  public getEncounters(patientUuid){
+    console.log(patientUuid);
   }
   // Get current loaded department
   public getCurrentDepartment() {
