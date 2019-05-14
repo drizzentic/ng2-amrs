@@ -5,6 +5,8 @@ import {ClinicDashboardCacheService} from '../clinic-dashboard/services/clinic-d
 import {CommonModule} from '@angular/common';
 import {UserDefaultPropertiesService} from '../user-default-properties';
 import {DailyScheduleResourceService} from '../etl-api/daily-scheduled-resource.service';
+import { AppointmentResourceService } from '../openmrs-api/appointment-resource-service';
+import { TodaysVitalsComponent } from '../patient-dashboard/common/todays-vitals/todays-vitals.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {DailyScheduleResourceService} from '../etl-api/daily-scheduled-resource.
   providers: [
     ClinicDashboardCacheService,
     UserDefaultPropertiesService,
-    DailyScheduleResourceService
+    DailyScheduleResourceService,
+    AppointmentResourceService,
+    TodaysVitalsComponent
   ],
   exports: [
     PatientQueueComponent

@@ -4,8 +4,6 @@ import { PatientQueueComponent } from './patient-queue.component';
 import {DailyScheduleResourceService} from '../etl-api/daily-scheduled-resource.service';
 import {ClinicDashboardCacheService} from '../clinic-dashboard/services/clinic-dashboard-cache.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import * as Moment from 'moment';
-import {PatientSearchModule} from '../patient-search/patient-search.module';
 import {AppSettingsService} from '../app-settings/app-settings.service';
 import {LocalStorageService} from '../utils/local-storage.service';
 import {DataCacheService} from '../shared/services/data-cache.service';
@@ -15,11 +13,10 @@ import {UserDefaultPropertiesService} from '../user-default-properties';
 import {UserService} from '../openmrs-api/user.service';
 import {SessionStorageService} from '../utils/session-storage.service';
 import {SelectDepartmentService} from '../shared/services/select-department.service';
-import {PatientSearchService} from '../patient-search/patient-search.service';
-import {Observable, Subject} from 'rxjs';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {Equal} from 'tslint/lib/utils';
 import {DepartmentServiceStub} from './patient-queue-department-service-stub';
+import { AppointmentResourceService } from '../openmrs-api/appointment-resource-service';
+import { EncounterResourceService } from '../openmrs-api/encounter-resource.service';
 
 class MockCacheStorageService {
   constructor(a, b) { }
@@ -55,7 +52,9 @@ describe('PatientQueueComponent', () => {
         {
           provide: SelectDepartmentService,
           useClass: DepartmentServiceStub
-        }
+        },
+        AppointmentResourceService,
+        EncounterResourceService
       ],
        imports: [
          HttpClientTestingModule

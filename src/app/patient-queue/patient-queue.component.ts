@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import * as Moment from 'moment';
 
 import { DailyScheduleResourceService } from '../etl-api/daily-scheduled-resource.service';
 
 import {take} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ClinicDashboardCacheService} from '../clinic-dashboard/services/clinic-dashboard-cache.service';
 import {UserDefaultPropertiesService} from '../user-default-properties';
 import {SelectDepartmentService} from '../shared/services/select-department.service';
 import {LocalStorageService} from '../utils/local-storage.service';
-import { HttpParams } from '@angular/common/http';
-import { VisitResourceService } from '../openmrs-api/visit-resource.service';
+import { AppointmentResourceService } from '../openmrs-api/appointment-resource-service';
+import * as _ from 'lodash';
+import * as moment from 'moment';
 @Component({
   selector: 'app-patient-queue',
   templateUrl: './patient-queue.component.html',
   styleUrls: ['./patient-queue.component.css']
 })
-export class PatientQueueComponent implements OnInit {
+export class PatientQueueComponent implements OnInit, OnDestroy {
+  
   public patientQueue: any[] = [];
   public patientVisit: any[] = [];
   public hideAppointments = false;
@@ -36,14 +38,14 @@ export class PatientQueueComponent implements OnInit {
   public currentDepartment: any;
   public nextStartIndex  = 0;
   public selectedDepartment: any;
-
   constructor(
    private dailyScheduleResource: DailyScheduleResourceService,
    private clinicDashboardCacheService: ClinicDashboardCacheService,
    private userDefaultProperties: UserDefaultPropertiesService,
    private selectDepartmentService: SelectDepartmentService,
    private localStorageService: LocalStorageService,
-   private patientVisitService: VisitResourceService,
+   private patientAppointmentService: AppointmentResourceService,
+   private router: Router
   ) { }
 
   ngOnInit() {
@@ -52,13 +54,77 @@ export class PatientQueueComponent implements OnInit {
       // this.selectedDepartment = selectedDepartment;
       this.selectedLocation = this.userDefaultProperties.getCurrentUserDefaultLocationObject();
       this.currentDate = Moment(new Date()).format('YYYY-MM-DD');
-      this.getPatientQueue();
+      this.getPatientAppointmentQueue();
     }
   }
 
-  public startAppointment(patient) {
-    // Initiate patientQueue from a certain location
+  ngOnDestroy(): void {
+   this.patientQueue = [];
+  }
+  getPatientAppointmentQueue() {
+    /**
+     * Get the appointments and loop through them to get the encounters. 
+     * Loop through the encounters to find the initial oncology form with diagnosis.
+     * Ecog values
+     * push the values to a new object with all datasets defined ()
+     * TODO: Obtain Vitals for current visit
+     */
+    let patientDetails: any = {}
+    let that = this;
 
+    this.patientAppointmentService
+    .getPatientAppointments({ fromDate: this.currentDate, status: 'WAITING', location: this.selectedLocation.uuid })
+    .subscribe((patientapptns) => {
+      if(patientapptns.length > 0){
+        _.each(patientapptns, function(appointment){
+          const startDateTime = appointment.visit.startDatetime
+          const encounterObs = that.getInitialEncounter(appointment.visit.encounters);
+          //Filter using general oncology uuid
+          patientDetails.appointment = appointment
+          patientDetails.startDateTime = moment(startDateTime).format('hh:mm');
+          patientDetails.obs = that.getDiagnosisObs(encounterObs);
+          patientDetails.waitingTime = that.calculateWaitingTime(patientDetails.obs, startDateTime);
+        });
+        this.patientQueue.push(patientDetails);
+        this.hideAppointments = true;
+      }
+      console.log('Patient Queue', this.patientQueue)
+    });
+  }
+  //Get the obs with Cancer type
+  public getDiagnosisObs(obs): any {
+    if(_.isArray(obs)){
+    //   return encounter.filter( 
+    //     el => el.concept.uuid == 'de2df280-4d34-466e-a894-f47cfec18f81'
+    //  );
+    } 
+  }
+  //Get Encounter
+  public getInitialEncounter(encounters) {
+   return encounters.filter(el => el.uuid == "de2df280-4d34-466e-a894-f47cfec18f81")
+  }
+
+  //Calculate Waiting time
+  public calculateWaitingTime(obs, startDateTime){
+    let obsDateTime = ""
+    if(_.isArray(obs)){
+      //Obtain time for latest Obs and subtract from startDateTime
+       obsDateTime = obs[0].obsDateTime;
+    } else {
+      obsDateTime = startDateTime;
+    }
+    var now  = moment();
+    var then = obsDateTime;
+
+    var s = moment(now.diff(then)).utcOffset(0).format('HH:mm');
+
+    return moment.duration(s, "minutes").humanize();
+  }
+
+  public startAppointment(patientUuid) {
+    // Initiate patientQueue from a certain location
+    this.router.navigate(['/patient-dashboard/patient/' + patientUuid +
+      '/general/general/landing-page']);
   }
 
   public getPatientQueue() {
@@ -92,26 +158,6 @@ export class PatientQueueComponent implements OnInit {
 
   }
 
-  // Get Visit
-  public getVisit(patientUuid){
-    const params = new HttpParams().set('patient', patientUuid);
-    console.log(params, patientUuid)
-    const patientVisit = this.patientVisitService.getPatientVisits({ patientUuid: patientUuid, startDatetime: this.currentDate });
-
-    patientVisit.subscribe((data) => {
-      console.log("aye", data);
-    })
-
-    
-
-
-  }
-
-
-  // Get Encouters
-  public getEncounters(patientUuid){
-    console.log(patientUuid);
-  }
   // Get current loaded department
   public getCurrentDepartment() {
     let department = this.localStorageService.getItem('userDefaultDepartment');
