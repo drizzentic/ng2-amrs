@@ -19,7 +19,8 @@ public getPatientAppointments(searchParams) {
     const params = new HttpParams()
     .set('location', searchParams.location)
     .set('status', searchParams.status)
-    .set('fromDate', searchParams.fromDate);
+    .set('fromDate', searchParams.fromDate)
+    .set('v', 'full');
     return this.http
     .get(`${this.appSettingsService.getOpenmrsRestbaseurl().trim()}appointmentscheduling/appointment`,{
         params: params
