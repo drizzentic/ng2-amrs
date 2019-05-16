@@ -17,6 +17,7 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {DepartmentServiceStub} from './patient-queue-department-service-stub';
 import { AppointmentResourceService } from '../openmrs-api/appointment-resource-service';
 import { EncounterResourceService } from '../openmrs-api/encounter-resource.service';
+import { Router } from '@angular/router';
 
 class MockCacheStorageService {
   constructor(a, b) { }
@@ -54,7 +55,8 @@ describe('PatientQueueComponent', () => {
           useClass: DepartmentServiceStub
         },
         AppointmentResourceService,
-        EncounterResourceService
+        EncounterResourceService,
+        Router
       ],
        imports: [
          HttpClientTestingModule
