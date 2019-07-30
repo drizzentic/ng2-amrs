@@ -25,6 +25,7 @@ import { CommunityGroupService } from './community-group-resource.service';
 import { CommunityGroupMemberService } from './community-group-member-resource.service';
 import { CommunityGroupAttributeService } from './community-group-attribute-resource.service';
 import { CommunityGroupLeaderService } from './community-group-leader-resource.service';
+import { TreatmentSummaryResourceService } from './treatment-summary-resource.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -56,6 +57,7 @@ import { CommunityGroupLeaderService } from './community-group-leader-resource.s
     CommunityGroupMemberService,
     CommunityGroupAttributeService,
     CommunityGroupLeaderService,
+    TreatmentSummaryResourceService
   ],
   exports: []
 })
