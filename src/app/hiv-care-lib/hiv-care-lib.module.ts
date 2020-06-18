@@ -116,6 +116,8 @@ import { AssignCaseManagerComponent } from './case-management/assign-case-manage
 import { CaseManagementIndicatorDefinitionComponent } from './case-management/case-management-indicator-definitions.component';
 
 import { CaseManagementResourceService } from './../etl-api/case-management-resource.service';
+import { PrepReportBaseComponent } from './prep-report/prep-report-base/prep-report-base.component';
+import { PrepReportPatientListComponent } from './prep-report/prep-report-patient-list/prep-report-patient-list.component';
 
 
 @NgModule({
@@ -229,7 +231,9 @@ import { CaseManagementResourceService } from './../etl-api/case-management-reso
     CaseManagementFiltersComponent,
     CaseManagementPatientListComponent,
     AssignCaseManagerComponent,
-    CaseManagementIndicatorDefinitionComponent
+    CaseManagementIndicatorDefinitionComponent,
+    PrepReportBaseComponent,
+    PrepReportPatientListComponent,
   ],
   providers: [MOHReportService,
     LocationResourceService,

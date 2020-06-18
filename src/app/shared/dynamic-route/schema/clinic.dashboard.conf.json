@@ -166,6 +166,12 @@
           "isSideBarOpen": false
         },
         {
+          "url": "prep-report",
+          "label": "PrEP Monthly Reports",
+          "icon": "fa fa-table",
+          "isSideBarOpen": false
+        },
+        {
           "url": "dqa-reports",
           "label": "DQA Reports",
           "icon": "fa fa-pie-chart",

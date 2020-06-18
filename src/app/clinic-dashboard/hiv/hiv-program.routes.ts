@@ -79,10 +79,14 @@ import {
 import { DqaReportsComponent } from 'src/app/hiv-care-lib/dqa-reports/dqa-reports/dqa-reports.component';
 import {
     ChartAbstractionPatientlistComponent
- } from 'src/app/hiv-care-lib/dqa-reports/chart-abstraction-patientlist/chart-abstraction-patientlist.component';
+} from 'src/app/hiv-care-lib/dqa-reports/chart-abstraction-patientlist/chart-abstraction-patientlist.component';
 
 
- import { ClinicDashboardCaseManagementComponent } from './case-management/clinic-dashboard-case-management.component';
+import { ClinicDashboardCaseManagementComponent } from './case-management/clinic-dashboard-case-management.component';
+import { PrepReportComponent } from './prep-report/prep-report.component';
+import {
+    PrepReportPatientListComponent
+} from 'src/app/hiv-care-lib/prep-report/prep-report-patient-list/prep-report-patient-list.component';
 
 const routes: Routes = [
     {
@@ -248,6 +252,19 @@ const routes: Routes = [
             {
                 path: '',
                 component: ClinicDashboardCaseManagementComponent
+            }
+        ]
+    },
+    {
+        path: 'prep-report',
+        children: [
+            {
+                path: '',
+                component: PrepReportComponent
+            },
+            {
+                path: 'patient-list',
+                component: PrepReportPatientListComponent
             }
         ]
     },
