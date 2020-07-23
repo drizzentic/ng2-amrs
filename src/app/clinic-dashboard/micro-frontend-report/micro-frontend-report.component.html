@@ -1,0 +1,6 @@
+<button (click)="sendMessageToReportIframe({ info: 'Sample Information' })">
+  Send to MF-Dashboard
+</button>
+<div class="embed-responsive embed-responsive-4by3">
+  <iframe class="embed-responsive-item" [title]="title" [src]="url" frameborder="0"></iframe>
+</div>
