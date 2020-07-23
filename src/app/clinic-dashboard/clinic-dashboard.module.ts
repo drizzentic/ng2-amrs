@@ -46,20 +46,31 @@ export function highchartsFactory() {
   return hc;
 }
 import { CacheModule } from 'ionic-cache';
-import { DataAnalyticsDashboardService } from '../data-analytics-dashboard/services/data-analytics-dashboard.services';
-import { ProgramVisitEncounterSearchModule } from '../program-visit-encounter-search/program-visit-encounter-search.module';
-import { DepartmentProgramFilterModule } from './../department-program-filter/department-program-filter.module';
-import { PatientProgramEnrollmentService } from './../etl-api/patient-program-enrollment.service';
-import { PatientProgramEnrollmentModule } from './../patients-program-enrollment/patients-program-enrollment.module';
-import { PatientReferralProgramModule } from './referral/patient-referral-program.module';
-import { ClinicRoutesFactory } from '../navigation/side-navigation/clinic-side-nav/clinic-side-nav-routes.factory';
+import { DataAnalyticsDashboardService
+} from '../data-analytics-dashboard/services/data-analytics-dashboard.services';
+import {
+  ProgramVisitEncounterSearchModule
+} from '../program-visit-encounter-search/program-visit-encounter-search.module';
+import { DepartmentProgramFilterModule
+} from './../department-program-filter/department-program-filter.module';
+import { PatientProgramEnrollmentService
+} from './../etl-api/patient-program-enrollment.service';
+import { PatientProgramEnrollmentModule
+} from './../patients-program-enrollment/patients-program-enrollment.module';
+import {
+  PatientReferralProgramModule
+} from './referral/patient-referral-program.module';
+import { ClinicRoutesFactory
+} from '../navigation/side-navigation/clinic-side-nav/clinic-side-nav-routes.factory';
+import { MicroFrontendReportComponent } from './micro-frontend-report/micro-frontend-report.component';
 
 @NgModule({
   declarations: [
     /**
      * Components / Directives/ Pipes
      */
-    ClinicDashboardComponent
+    ClinicDashboardComponent,
+    MicroFrontendReportComponent
   ],
   imports: [
     CommonModule,
