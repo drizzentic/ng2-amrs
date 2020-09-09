@@ -147,6 +147,8 @@ import { MicroFrontendReportComponent } from './micro-frontend-report/micro-fron
     ClinicDashboardRetentionReportComponent,
     ClinicDashboardCaseManagementComponent,
     ClinicDashboardHeiReportComponent,
+    MicroFrontendReportComponent,
+    ClinicDashboardHeiReportComponent,
     MicroFrontendReportComponent
   ],
   providers: [ClinicalSummaryVisualizationService],

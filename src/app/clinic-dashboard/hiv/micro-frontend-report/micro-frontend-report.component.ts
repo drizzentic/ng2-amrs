@@ -99,7 +99,7 @@ export class MicroFrontendReportComponent implements OnDestroy, OnInit {
 
   public validateMessageEvent(message: MessageEvent) {
     if (message.origin === this.baseUrl) {
-      if (message.data === 'login') {
+      if (message.data.action === 'authenticate') {
         this.sendMessageToReportIframe({
           loginToken: this.sessionStorageService.getItem(
             Constants.CREDENTIALS_KEY
