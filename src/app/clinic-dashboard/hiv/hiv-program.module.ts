@@ -71,6 +71,8 @@ import { ClinicDashboardRetentionReportComponent } from './retention-report/clin
 import { ClinicDashboardCaseManagementComponent } from './case-management/clinic-dashboard-case-management.component';
 import { PrepReportComponent } from './prep-report/prep-report.component';
 import { ClinicDashboardHeiReportComponent } from './clinic-dashboard-hei-indicators-report/clinic-dashboard-hei-report.component';
+import { MicroFrontendReportComponent } from './micro-frontend-report/micro-frontend-report.component';
+
 @NgModule({
   imports: [
     clinicDashboardHivRouting,
@@ -154,7 +156,8 @@ import { ClinicDashboardHeiReportComponent } from './clinic-dashboard-hei-indica
     ClinicDashboardRetentionReportComponent,
     ClinicDashboardCaseManagementComponent,
     PrepReportComponent,
-    ClinicDashboardHeiReportComponent
+    ClinicDashboardHeiReportComponent,
+    MicroFrontendReportComponent
   ],
   providers: [ClinicalSummaryVisualizationService],
   entryComponents: [PatientStatusDatalistCellComponent]
