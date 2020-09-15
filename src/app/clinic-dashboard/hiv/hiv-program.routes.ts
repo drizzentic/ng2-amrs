@@ -26,8 +26,6 @@ import { PatientsProgramEnrollmentComponent } from '../../patients-program-enrol
 import { ProgramEnrollmentPatientListComponent } from '../../patients-program-enrollment/program-enrollent-patient-list.component';
 import { ClinicLabOrdersComponent } from '../general/clinic-lab-orders/clinic-lab-orders.component';
 import { ChangeDepartmentComponent } from '../change-department/change-department.component';
-import { Moh731MonthlyVizComponent } from './moh731-monthly-viz/moh731-monthly-viz.component';
-import { DashboardsViewerComponent } from '../../kibana-lib';
 import { HivDifferentiatedCareComponent } from './hiv-differentiated-care-program/hiv-differentiated-care-program.component';
 import { SurgeReportComponent } from './surge-report/surge-report.component';
 import { SurgeReportPatientListComponent } from 'src/app/hiv-care-lib/surge-report/surge-report-patient-list.component';
@@ -38,10 +36,6 @@ import { DqaReportsComponent } from 'src/app/hiv-care-lib/dqa-reports/dqa-report
 import { ChartAbstractionPatientlistComponent } from 'src/app/hiv-care-lib/dqa-reports/chart-abstraction-patientlist/chart-abstraction-patientlist.component';
 
 import { ClinicDashboardCaseManagementComponent } from './case-management/clinic-dashboard-case-management.component';
-import { PrepReportComponent } from './prep-report/prep-report.component';
-import { PrepReportPatientListComponent } from 'src/app/hiv-care-lib/prep-report/prep-report-patient-list/prep-report-patient-list.component';
-import { MonthlyReportComponent } from 'src/app/hiv-care-lib/monthly-report/monthly-report.component';
-
 import { ClinicDashboardHeiReportComponent } from './clinic-dashboard-hei-indicators-report/clinic-dashboard-hei-report.component';
 import { HeiIndicatorsPatientListComponent } from './../../hiv-care-lib/hei-indicators-report/hei-indicators-patient-list.component';
 import { MicroFrontendReportComponent } from './micro-frontend-report/micro-frontend-report.component';
@@ -72,14 +66,6 @@ const routes: Routes = [
   {
     path: 'moh-731-report/patient-list',
     component: Moh731PatientListComponent
-  },
-  {
-    path: 'moh-731-monthly-viz',
-    component: Moh731MonthlyVizComponent // replace with landing page for module
-  },
-  {
-    path: 'hiv-viz',
-    component: DashboardsViewerComponent
   },
   {
     path: 'hiv-summary-indicator-report',

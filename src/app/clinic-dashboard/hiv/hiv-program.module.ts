@@ -25,7 +25,6 @@ import { Moh731ReportComponent } from './moh-731/moh-731-report.component';
 import { clinicDashboardHivRouting } from './hiv-program.routes';
 import { HivCareLibModule } from '../../hiv-care-lib/hiv-care-lib.module';
 import { EtlApi } from '../../etl-api/etl-api.module';
-import { HivModuleComponent } from './hiv-program.component';
 import { DepartmentProgramFilterModule } from './../../department-program-filter/department-program-filter.module';
 import { PatientStatusChangeVisualizationContainerComponent } from './patient-status-change-visualization/patient-status-change-visualization.container.component';
 import { PatientStatusChangeVisualizationComponent } from './patient-status-change-visualization/patient-status-change-visualization.component';
@@ -52,10 +51,6 @@ import { ArtOverviewIndicatorDefComponent } from './clinical-summary-visualizati
 import { ClinicalSummaryVisualizationService } from '../../hiv-care-lib/services/clinical-summary-visualization.service';
 import { ProgramVisitEncounterSearchModule } from '../../program-visit-encounter-search/program-visit-encounter-search.module';
 import { RouterModule } from '@angular/router';
-import { Moh731MonthlyVizComponent } from './moh731-monthly-viz/moh731-monthly-viz.component';
-import { ClinicKibanaVizComponent } from '../../clinic-dashboard/clinic-kibana-viz/clinic-kibana-viz.component';
-import { KibanaLibModule } from '../../kibana-lib';
-
 import { HivEnhancedComponent } from './hiv-enhanced-program/hiv-enhanced-program.component';
 import { HivEnhancedFiltersComponent } from './hiv-enhanced-program/hiv-enhanced-program-filters/hiv-enhanced-program-filters.component';
 import { HivEnhancedPatientListComponent } from './hiv-enhanced-program/hiv-enhanced-patient-list/hiv-enhanced-patient-list.component';
@@ -69,7 +64,6 @@ import { ReportingUtilitiesModule } from 'src/app/reporting-utilities/reporting-
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { ClinicDashboardRetentionReportComponent } from './retention-report/clinic-dashboard-retention-report.component';
 import { ClinicDashboardCaseManagementComponent } from './case-management/clinic-dashboard-case-management.component';
-import { PrepReportComponent } from './prep-report/prep-report.component';
 import { ClinicDashboardHeiReportComponent } from './clinic-dashboard-hei-indicators-report/clinic-dashboard-hei-report.component';
 import { MicroFrontendReportComponent } from './micro-frontend-report/micro-frontend-report.component';
 
@@ -101,7 +95,6 @@ import { MicroFrontendReportComponent } from './micro-frontend-report/micro-fron
     DepartmentProgramFilterModule,
     ChangeDepartmentModule,
     GeneralModule,
-    KibanaLibModule,
     ReportingUtilitiesModule,
     BsDatepickerModule.forRoot()
   ],
@@ -148,14 +141,11 @@ import { MicroFrontendReportComponent } from './micro-frontend-report/micro-fron
     HivEnhancedFiltersComponent,
     HivEnhancedPatientListComponent,
     DefaulterListComponent,
-    Moh731MonthlyVizComponent,
-    ClinicKibanaVizComponent,
     HivDifferentiatedCareComponent,
     HivDifferentiatedCarePatientListComponent,
     SurgeReportComponent,
     ClinicDashboardRetentionReportComponent,
     ClinicDashboardCaseManagementComponent,
-    PrepReportComponent,
     ClinicDashboardHeiReportComponent,
     MicroFrontendReportComponent
   ],
