@@ -26,8 +26,12 @@ import { clinicDashboardHivRouting } from './hiv-program.routes';
 import { HivCareLibModule } from '../../hiv-care-lib/hiv-care-lib.module';
 import { EtlApi } from '../../etl-api/etl-api.module';
 import { DepartmentProgramFilterModule } from './../../department-program-filter/department-program-filter.module';
-import { PatientStatusChangeVisualizationContainerComponent } from './patient-status-change-visualization/patient-status-change-visualization.container.component';
-import { PatientStatusChangeVisualizationComponent } from './patient-status-change-visualization/patient-status-change-visualization.component';
+import {
+  PatientStatusChangeVisualizationContainerComponent
+} from './patient-status-change-visualization/patient-status-change-visualization.container.component';
+import {
+  PatientStatusChangeVisualizationComponent
+} from './patient-status-change-visualization/patient-status-change-visualization.component';
 import { PatientStatusDatalistCellComponent } from './patient-status-change-visualization/patient-status-data-list-cell.component';
 import { PatientStatusChangeListComponent } from './patient-status-change-visualization/patient-status-change-list.component';
 import { HivSummaryIndicatorComponent } from './hiv-summary-indicators/hiv-summary-indicator.component';
@@ -38,10 +42,14 @@ import { DailyScheduleClinicFlowComponent } from './clinic-flow/daily-schedule-c
 import { HivCareComparativeComponent } from './hiv-visualization/hiv-care-overview.component';
 import { HivDailyScheduleComponent } from './daily-schedule/daily-schedule.component';
 import { HivMonthlyScheduleComponent } from './monthly-schedule/monthly-schedule.component';
-import { PatientStatusIndicatorDefComponent } from './clinical-summary-visualization/patient-status-overview/indicator-definition.component';
+import {
+  PatientStatusIndicatorDefComponent
+} from './clinical-summary-visualization/patient-status-overview/indicator-definition.component';
 import { ArtOverviewComponent } from './clinical-summary-visualization/art-overview/art-overview.component';
 import { PatientStatusOverviewComponent } from './clinical-summary-visualization/patient-status-overview/patient-status-overview.component';
-import { VisualizationPatientListComponent } from './clinical-summary-visualization/visualization-patient-list/visualization.patient-list.component';
+import {
+  VisualizationPatientListComponent
+} from './clinical-summary-visualization/visualization-patient-list/visualization.patient-list.component';
 import { DashboardFiltersComponent } from '../dashboard-filters/dashboard-filters.component';
 import { DateRangeComponent } from '../dashboard-filters/date-range/date-range.component';
 import { RangeSliderComponent } from '../dashboard-filters/range-slider/range-slider.component';
@@ -58,7 +66,9 @@ import { DefaulterListComponent } from '../general/defaulter-list/defaulter-list
 import { GeneralModule } from '../general/general.module';
 import { ChangeDepartmentModule } from '../change-department/change-department.module';
 import { HivDifferentiatedCareComponent } from './hiv-differentiated-care-program/hiv-differentiated-care-program.component';
-import { HivDifferentiatedCarePatientListComponent } from './hiv-differentiated-care-program/hiv-differentiated-care-program-patient-list/hiv-differentiated-care-patient-list.component';
+import {
+  HivDifferentiatedCarePatientListComponent
+} from './hiv-differentiated-care-program/hiv-differentiated-care-program-patient-list/hiv-differentiated-care-patient-list.component';
 import { SurgeReportComponent } from './surge-report/surge-report.component';
 import { ReportingUtilitiesModule } from 'src/app/reporting-utilities/reporting-utilities.module';
 import { BsDatepickerModule } from 'ngx-bootstrap';

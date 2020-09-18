@@ -8,7 +8,7 @@ const gitInfo = gitDescribeSync({
 });
 
 gitInfo.version = version;
-gitInfo.buildDate = new Date();
+gitInfo.buildDate = "Sep 4, 2020, 3:22:44 PM";
 const file = resolve(__dirname, '.', 'src', 'environments', 'version.ts');
 writeFileSync(file,
 `// IMPORTANT: THIS FILE IS AUTO GENERATED! DO NOT MANUALLY EDIT OR CHECKIN!

@@ -6,7 +6,9 @@ import { HivSummaryIndicatorComponent } from './hiv-summary-indicators/hiv-summa
 import { HivSummaryIndicatorsPatientListComponent } from '../../hiv-care-lib/hiv-summary-indicators/patient-list.component';
 import { PatientsRequiringVLComponent } from './patients-requiring-vl/patients-requiring-vl.component';
 import { HivCareComparativeComponent } from './hiv-visualization/hiv-care-overview.component';
-import { PatientStatusChangeVisualizationContainerComponent } from './patient-status-change-visualization/patient-status-change-visualization.container.component';
+import {
+  PatientStatusChangeVisualizationContainerComponent
+} from './patient-status-change-visualization/patient-status-change-visualization.container.component';
 import { PatientStatusChangeListComponent } from './patient-status-change-visualization/patient-status-change-list.component';
 import { VisualizationPatientListComponent } from '../../hiv-care-lib/hiv-visualization/visualization-patient-list.component';
 import { Moh731PatientListComponent } from './../../hiv-care-lib/moh-731-report/moh-731-patientlist.component';
@@ -33,7 +35,9 @@ import { SurgeReportPatientListComponent } from 'src/app/hiv-care-lib/surge-repo
 import { ClinicDashboardRetentionReportComponent } from './retention-report/clinic-dashboard-retention-report.component';
 import { RetentionReportPatientListComponent } from './../../hiv-care-lib/retention-report/retention-report-patient-list.component';
 import { DqaReportsComponent } from 'src/app/hiv-care-lib/dqa-reports/dqa-reports/dqa-reports.component';
-import { ChartAbstractionPatientlistComponent } from 'src/app/hiv-care-lib/dqa-reports/chart-abstraction-patientlist/chart-abstraction-patientlist.component';
+import {
+  ChartAbstractionPatientlistComponent
+} from 'src/app/hiv-care-lib/dqa-reports/chart-abstraction-patientlist/chart-abstraction-patientlist.component';
 
 import { ClinicDashboardCaseManagementComponent } from './case-management/clinic-dashboard-case-management.component';
 import { ClinicDashboardHeiReportComponent } from './clinic-dashboard-hei-indicators-report/clinic-dashboard-hei-report.component';
